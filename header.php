@@ -27,17 +27,41 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
+			<?php the_custom_logo(); ?>
+
+			<?php if ( is_front_page() && is_home() ) : ?>
+				<!-- <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a> -->
+				<h1 class="site-title">Home</h1>
+
+			<?php elseif ( is_singular() ) : ?>
+				<h1 class="page-title">
+					<?php the_title(); ?>
+				</h1>
+
+			<?php elseif ( is_archive() ) : ?>
+				<h1 class="archive-title">
+					<?php the_archive_title(); ?>
+				</h1>
+
+			<?php elseif ( is_search() ) : ?>
+				<h1 class="search-title">
+					Search results for: <?php echo esc_html( get_search_query() ); ?>
+				</h1>
+
+			<?php elseif ( is_404() ) : ?>
+				<h1 class="error-title">
+					Page not found
+				</h1>
+
+			<?php else : ?>
+				<h1 class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php bloginfo( 'name' ); ?>
+					</a>
+				</h1>
+			<?php endif; ?>
+			<button class="btn-primary">Contact Us</button>
 			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
 			$underscores_starter_template_description = get_bloginfo( 'description', 'display' );
 			if ( $underscores_starter_template_description || is_customize_preview() ) :
 				?>
@@ -57,3 +81,4 @@
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+	<hr class="divider">
