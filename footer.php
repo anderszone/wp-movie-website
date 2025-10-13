@@ -10,8 +10,8 @@
  */
 
 ?>
-<hr class="divider">
 	<footer id="colophon" class="site-footer">
+		<hr class="divider">
 		<div class="site-info">
 			<?php
 			printf(
