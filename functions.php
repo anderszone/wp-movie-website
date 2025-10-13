@@ -176,3 +176,55 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// Anders Create functions
+function wp_movie_register_post_type() {
+	register_post_type( 'movie', array(
+		'labels' => array(
+			'name' => __( 'Movies' ),
+			'singular_name' => __( 'Movie' ),
+			'add_new'               => __( 'Add New Movie', 'wp-movie-website' ),
+			'add_new_item'          => __( 'Add New Movie', 'wp-movie-website' ),
+			'edit_item'             => __( 'Edit Movie', 'wp-movie-website' ),
+			'new_item'              => __( 'New Movie', 'wp-movie-website' ),
+			'view_item'             => __( 'View Movie', 'wp-movie-website' ),
+			'search_items'          => __( 'Search Movies', 'wp-movie-website' ),
+			'not_found'             => __( 'No movies found', 'wp-movie-website' ),
+			'not_found_in_trash'    => __( 'No movies found in Trash', 'wp-movie-website' ),
+			'all_items'             => __( 'All Movies', 'wp-movie-website' ),
+			'menu_name'             => __( 'Movies', 'wp-movie-website' ),
+			'name_admin_bar'        => __( 'Movie', 'wp-movie-website' ),
+		),
+		'public' => true,
+		'has_archive' => true,
+		'show_in_rest' => true,
+		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+		'menu_icon' => 'dashicons-format-video',
+	) );
+}
+
+function wp_movie_register_taxonomies() {
+	register_taxonomy( 'genre', 'movie', array(
+		'label' => __( 'Genres' ),
+		'hierarchical' => true,
+		'show_in_rest' => true,
+	) );
+}
+
+add_action( 'init', 'wp_movie_register_post_type' );
+add_action( 'init', 'wp_movie_register_taxonomies' );
+
+// Stöd för Font Awesome ikoner
+function wp_movies_enqueue_styles() {
+    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0' );
+}
+add_action( 'wp_enqueue_scripts', 'wp_movies_enqueue_styles' );
+
+// Lägg till data-attribute för varje meny-länk baserat på menynamn
+function wp_movie_menu_data_attributes( $atts, $item, $args, $depth ) {
+    if ( isset( $item->title ) ) {
+        // Skapa ett data-genre baserat på menynamn, t.ex. "Home" -> "home"
+        $atts['data-icon'] = strtolower( str_replace(' ', '-', $item->title) );
+    }
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'wp_movie_menu_data_attributes', 10, 4 );
