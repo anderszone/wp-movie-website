@@ -69,6 +69,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
+	height: 100%;
 }
 
 /* Sections
@@ -983,7 +984,7 @@ textarea {
 	align-items: center;
 }
 
-.site-title {
+.site-title, .page-title {
 	margin: 0;
 	line-height: 1;
 	color: #FAF9F7;
@@ -1006,8 +1007,9 @@ textarea {
 .divider {
 	height: 1px;
 	width: 100%;
-	background-color: red;
+	background-color: #FF4800;
 	margin: 0;
+	padding: 0;
 }
 
 /* ### SITE FOOTER ### */
@@ -1040,4 +1042,176 @@ textarea {
 #content,
 .site-main {
     flex: 1;
+}
+
+/* === SIDEBAR LAYOUT === */
+.site-sidebar {
+	width: 240px;
+	background-color: #0d0d0d;
+	display: flex;
+	flex-direction: column;
+	padding: 24px 16px;
+	color: #fff;
+	font-family: 'Inter', sans-serif;
+	border-right: 1px solid #FF4800;
+}
+
+.sidebar-top {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.site-logo {
+	padding: 0 12px;
+}
+
+.site-logo a {
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+}
+
+.site-logo .highlight {
+	color: #ff6600;
+}
+
+.sidebar-search {
+	display: flex;
+	align-items: center;
+	padding: 0 12px;
+}
+
+.sidebar-search input[type="search"] {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+	outline: none;
+	color: #ADA89F;
+	background-color: transparent;
+}
+
+.sidebar-search input[type="submit"] {
+    display: none; /* om du vill använda enter istället för knapp */
+}
+
+.sidebar-search::before {
+    content: "\f002"; /* Font Awesome sökikon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #aaa;
+	text-align: center;
+	width: 20px;
+}
+
+/* Sidebar meny */
+.main-navigation {
+	display: block; /* säkerställ vertikal lista */
+}
+
+.sidebar-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar-menu li {
+	display: block;
+}
+
+.sidebar-menu li a {
+	display: flex;         /* ikon + text på samma rad */
+	align-items: center;   /* vertikalt centrerat */
+	color: #ADA89F;
+	text-decoration: none;
+	font-size: 15px;
+	padding: 10px 12px;
+	border-radius: 4px;
+	border-left: 1px solid;
+	border-color: transparent;
+	transition: color 0.2s;
+}
+
+.sidebar-menu li a:hover {
+	color: #FAF9F7;
+	background-color: #1C1715;
+	border-left: 1px solid #FF4800;
+}
+
+/* Ikoner via data-attribut */
+.sidebar-menu li a::before {
+	font-family: "Font Awesome 5 Free"; 
+	font-weight: 900;
+	content: "";          /* default tom */
+	display: inline-block;
+	width: 20px;          /* plats för ikon */
+	margin-right: 10px;
+	text-align: center;
+}
+
+.sidebar-menu li a[data-icon="home"]::before { content: "\f015"; }    /* Home */
+.sidebar-menu li a[data-icon="about"]::before { content: "\f05a"; }   /* About Us */
+.sidebar-menu li a[data-icon="movies"]::before { content: "\f008"; }  /* Movies */
+.sidebar-menu li a[data-icon="tv"]::before { content: "\f26c"; }      /* TV Shows */
+
+/* Markera aktiv sida i sidomenyn */
+.sidebar-menu .current-menu-item > a {
+	color: #FAF9F7; /* samma färg som hover */
+	background-color: #1C1715;
+	border-left: 1px solid #FF4800;
+}
+
+.sidebar-menu .current-menu-item > a::before {
+	color: #FAF9F7; /* gör även ikonen orange */
+}
+
+/* Genres */
+.sidebar-genres {
+	padding-left: 12px;
+}
+
+.sidebar-genres ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar-genres li {
+	margin-bottom: 12px;
+}
+
+.sidebar-genres a {
+	color: #aaa;
+	text-decoration: none;
+	font-size: 15px;
+	transition: color 0.2s;
+}
+
+.sidebar-genres a:hover {
+	color: #ff6600;
+}
+
+.genres-title-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.genres-title {
+	font-size: 13px;
+	color: #777;
+	text-transform: uppercase;
+}
+
+.sidebar-footer {
+	font-size: 12px;
+	color: #555;
+	text-align: left;
+	margin-top: 30px;
 }
