@@ -69,5 +69,5 @@
 				<p class="site-description"><?php echo $underscores_starter_template_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
+		<hr class="divider">
 	</header><!-- #masthead -->
-	<hr class="divider">
