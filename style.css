@@ -1162,7 +1162,7 @@ textarea {
 }
 
 .sidebar-menu li a[data-icon="home"]::before { content: "\f015"; }    /* Home */
-.sidebar-menu li a[data-icon="about"]::before { content: "\f05a"; }   /* About Us */
+.sidebar-menu li a[data-icon="about-us"]::before { content: "\f05a"; }   /* About Us */
 .sidebar-menu li a[data-icon="movies"]::before { content: "\f008"; }  /* Movies */
 .sidebar-menu li a[data-icon="tv"]::before { content: "\f26c"; }      /* TV Shows */
 
@@ -1220,4 +1220,108 @@ textarea {
 	color: #555;
 	text-align: left;
 	margin-top: 30px;
+}
+
+.site-main {
+	color: #ADA89F;
+	background-color: #0E0B0A;
+	padding: 2rem;
+}
+
+.wp-block-media-text > .wp-block-media-text__content {
+	padding: 0;
+}
+
+/* Modern knapp med gradient och hover-animation */
+.button {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  gap: 2rem;
+
+  font-size: 1rem;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+
+.btn-first {
+  background-color: transparent; 
+  color: #FAF9F7; 
+  border: 1px solid #292423;
+  border-radius: 10rem;
+
+  &:hover {
+	transform: scale(1.03);
+	background-color: #FF4800;
+	border-color: #FF4800;
+	box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* större skugga */
+  }
+}
+
+/* Fokus-effekt för tillgänglighet */
+.btn:focus {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Ikonstil */
+.btn i {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.btn-left-icon i {
+	margin-right: 0.5rem;
+}
+
+.btn-right-icon i {
+    margin-left: 0.5rem; /* avstånd mellan text och ikon */
+}
+
+.fa-solid {
+  display: inline-block;
+  visibility: visible;
+  color: inherit;
+  font-size: 1em;
+}
+
+/* Stil för Media & Text-blocket på About-sidan */
+.about-media-block {
+  display: flex;
+  gap: 40px;
+}
+
+/* Texten på vänster sida */
+.about-media-block .wp-block-media-text__content {
+  flex-basis: 55%;     /* Bredd på texten */
+  order: 1;            /* Texten först */
+}
+
+/* Bilden på höger sida */
+.about-media-block .wp-block-media-text__media {
+  flex-basis: 45%;     /* Bredd på bilden */
+  order: 2;            /* Flytta bilden till höger */
+}
+
+/* Justera vertikal alignment om bilden ska ligga högst upp med rubriken */
+.about-media-block {
+  align-items: flex-start;
+}
+
+h1.entry-title {
+  display: none;
+}
+
+.entry-content {
+	margin: 0;
+}
+
+.wp-block-heading {
+	color: #FAF9F7;
+	margin: 0;
+}
+
+.wp-block-heading:not(:first-of-type) {
+	margin: 3rem 0 0;
 }
