@@ -18,7 +18,7 @@
 				/* translators: 1: Theme name, 2: Author link, 3: Year */
 				esc_html__( '%1$s | Theme by %2$s | © %3$s All rights reserved.', 'wp-movie-website' ),
 				'WP Movies',
-				'<a href="https://wpwebguide.com">Anders Johansson</a>',
+				'<a href="https://wpwebguide.com">Anders</a>',
 				date('Y')
 			);
 			?>

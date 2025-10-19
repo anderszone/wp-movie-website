@@ -1151,20 +1151,19 @@ textarea {
 }
 
 /* Ikoner via data-attribut */
-.sidebar-menu li a::before {
+[data-icon]::before {
 	font-family: "Font Awesome 5 Free"; 
 	font-weight: 900;
-	content: "";          /* default tom */
+	content: "";
 	display: inline-block;
-	width: 20px;          /* plats för ikon */
 	margin-right: 10px;
 	text-align: center;
 }
 
-.sidebar-menu li a[data-icon="home"]::before { content: "\f015"; }    /* Home */
-.sidebar-menu li a[data-icon="about-us"]::before { content: "\f05a"; }   /* About Us */
-.sidebar-menu li a[data-icon="movies"]::before { content: "\f008"; }  /* Movies */
-.sidebar-menu li a[data-icon="tv"]::before { content: "\f26c"; }      /* TV Shows */
+[data-icon="home"]::before { content: "\f015"; }    /* Home */
+[data-icon="about-us"]::before { content: "\f05a"; }   /* About Us */
+[data-icon="movies"]::before { content: "\f008"; }  /* Movies */
+[data-icon="tv"]::before { content: "\f26c"; }      /* TV Shows */
 
 /* Markera aktiv sida i sidomenyn */
 .sidebar-menu .current-menu-item > a {
@@ -1222,6 +1221,84 @@ textarea {
 	margin-top: 30px;
 }
 
+/* === TMDB Movies Grid === */
+.tmdb-movies,
+.tmdb-tvshows {
+    display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.tmdb-tvshows {
+    margin-top: 3rem; /* lite extra mellan Movies och TV Shows */
+}
+
+.tmdb-movies .home-heading {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 0.625rem;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.tmdb-movies .home-heading i {
+    font-size: 28px;
+    line-height: 1;
+    position: relative;
+    top: 3px;
+}
+
+/* Grid layout */
+.tmdb-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* Individual item */
+.tmdb-item {
+	padding: 0.75rem;
+	background-color: #0d0d0d;
+    border: 1px solid #606060;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.tmdb-item a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bild-container för fast förhållande */
+.tmdb-item img {
+    max-width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+	object-position: top; /* Viktigt, visar toppen av bilden */
+    display: block;
+	border-radius: 0.25rem;
+}
+
+/* Titel under bilden */
+.tmdb-item h3 {
+    margin: 0.75rem 0 0;
+    font-size: 0.875rem;
+	font-weight: 400;
+    color: #fff;
+}
+
+/* Hover-effekt */
+.tmdb-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+}
+
 .site-main {
 	color: #ADA89F;
 	background-color: #0E0B0A;
@@ -1243,7 +1320,6 @@ textarea {
   transition: all 300ms ease-in-out;
   cursor: pointer;
 }
-
 
 .btn-first {
   background-color: transparent; 
@@ -1279,12 +1355,12 @@ textarea {
     margin-left: 0.5rem; /* avstånd mellan text och ikon */
 }
 
-.fa-solid {
+/* .fa-solid {
   display: inline-block;
   visibility: visible;
   color: inherit;
   font-size: 1em;
-}
+} */
 
 /* Stil för Media & Text-blocket på About-sidan */
 .about-media-block {
@@ -1318,10 +1394,31 @@ h1.entry-title {
 }
 
 .wp-block-heading {
-	color: #FAF9F7;
 	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 400;
+	color: #FAF9F7;
 }
 
 .wp-block-heading:not(:first-of-type) {
 	margin: 3rem 0 0;
+}
+
+/* Anpassa för mindre skärmar */
+@media (max-width: 1200px) {
+    .tmdb-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .tmdb-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tmdb-grid {
+        grid-template-columns: 1fr;
+    }
 }
