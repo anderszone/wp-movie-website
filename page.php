@@ -74,7 +74,7 @@ get_header();
 					error_log('⚠️ No TV shows found in database at ' . date('Y-m-d H:i:s'));
 				}
 				?>
-				</section>
+				</section>	
 
 				<script>
 				function fetchAndRender(action, containerId) {
@@ -104,6 +104,33 @@ get_header();
 				});
 				</script>
     		<?php endif;
+
+			// Visa innehåll endast på sidan "movies"
+			if ( is_page('movies') ) :
+			?>
+				<section class="tmdb-movies" id="movies-list">
+					<h2 class="wp-block-heading" data-icon="movies">Movies</h2>
+					<?php
+					// Hämta 16 filmer från databasen (du kan ändra antal)
+					$movies = wp_movies_get_from_db('movie', 16, true);
+
+					if ( $movies ) {
+						echo '<div class="tmdb-grid">';
+						foreach ( $movies as $movie ) {
+							echo '<div class="tmdb-item">';
+							echo '<a href="https://www.themoviedb.org/movie/' . esc_attr( $movie->tmdb_id ) . '" target="_blank">';
+							echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="' . esc_attr( $movie->title ) . '">';
+							echo '<h3>' . esc_html( $movie->title ) . '</h3>';
+							echo '<h3>' . esc_html( date('Y', strtotime($movie->release_date)) ) . '</h3>';
+							echo '</a></div>';
+						}
+						echo '</div>';
+					} else {
+						echo '<p>No movies found right now. Please check back later!</p>';
+					}
+					?>
+				</section>
+			<?php endif;
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :
