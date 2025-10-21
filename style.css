@@ -242,7 +242,8 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-	-webkit-appearance: button;
+	-webkit-appearance: button;	/* Safari / Chrome */
+	appearance: button;			/* Standard egenskap för alla browsers */
 }
 
 /**
@@ -325,7 +326,8 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type="search"] {
-	-webkit-appearance: textfield;
+	-webkit-appearance: textfield;	/* Safari / Chrome */
+	appearance: textfield;          /* Standard egenskap */
 	outline-offset: -2px;
 }
 
