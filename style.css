@@ -1000,7 +1000,7 @@ textarea {
 	padding-block: 1.5rem 2.8125rem;
 }
 
-.site-title, .page-title {
+.site-title, .page-title, .archive-title {
 	margin: 0;
 	line-height: 1;
 	color: #FAF9F7;

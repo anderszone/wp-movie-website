@@ -108,7 +108,7 @@ get_header();
 			<?php endif;
 
 			// Visa innehåll endast på sidan "TV Shows"
-			if ( is_page('tv') ) :
+			if ( is_page('tv') || is_page('tv-shows') ) :
 			?>
 				<section class="tmdb-movies">
 					<h2 class="wp-block-heading" data-icon="tv">TV Shows</h2>

@@ -14,7 +14,6 @@ if ( ! defined( '_S_VERSION' ) ) {
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
- *
  * Note that this function is hooked into the after_setup_theme hook, which
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
@@ -196,6 +195,7 @@ function wp_movie_register_post_type() {
 		),
 		'public' => true,
 		'has_archive' => true,
+		'rewrite' => array( 'slug' => 'movies-archive' ), // 🔹 Added for clean URLs
 		'show_in_rest' => true,
 		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		'menu_icon' => 'dashicons-format-video',
@@ -204,14 +204,95 @@ function wp_movie_register_post_type() {
 
 function wp_movie_register_taxonomies() {
 	register_taxonomy( 'genre', 'movie', array(
-		'label' => __( 'Genres' ),
-		'hierarchical' => true,
-		'show_in_rest' => true,
+		'label'             => __( 'Genres', 'wp-movie-website' ),
+		'labels'            => array(
+			'name'                  => _x( 'Genres', 'taxonomy general name', 'wp-movie-website' ),
+			'singular_name'         => _x( 'Genre', 'taxonomy singular name', 'wp-movie-website' ),
+			'search_items'          => __( 'Search Genres', 'wp-movie-website' ),
+			'all_items'             => __( 'All Genres', 'wp-movie-website' ),
+			'parent_item'           => __( 'Parent Genre', 'wp-movie-website' ),
+			'parent_item_colon'     => __( 'Parent Genre:', 'wp-movie-website' ),
+			'edit_item'             => __( 'Edit Genre', 'wp-movie-website' ),
+			'update_item'           => __( 'Update Genre', 'wp-movie-website' ),
+			'add_new_item'          => __( 'Add New Genre', 'wp-movie-website' ),
+			'new_item_name'         => __( 'New Genre Name', 'wp-movie-website' ),
+			'menu_name'             => __( 'Genres', 'wp-movie-website' ),
+		),
+		'public'            => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'hierarchical'      => true,
+		'show_in_rest'      => true,
+		'rewrite'           => array( 'slug' => 'genre' ),
 	) );
 }
 
 add_action( 'init', 'wp_movie_register_post_type' );
 add_action( 'init', 'wp_movie_register_taxonomies' );
+
+/**
+ * Hämtar filmer och/eller tv-serier ur wp_movies beroende på genre och typ.
+ * - Stöd för exakt genre (kolumn: 'genre')
+ * - Stöd för kommaseparerade genres (kolumn: 'genres')
+ *
+ * @param string $genre_slug           Genre-slug.
+ * @param string|array $type           'movie', 'tv' eller array ['movie', 'tv']. Lämna tom för båda.
+ * @param int $limit                   Antal resultat att hämta.
+ * @param string $orderby              Vilken kolumn ska sorteras? (release_date, title, random/RAND())
+ * @param string $genres_column        Ange kolumnnamn: 'genre' eller 'genres' (standard för kommaseparerad).
+ *
+ * @return array                       Array av objekt från databasen.
+ */
+
+function wp_movies_get_by_genre_smart($genre_slug, $type = '', $limit = 50, $orderby = 'release_date') {
+    global $wpdb;
+
+    // Skapa LIKE-mönster (lägg till % före och efter slugg)
+    $genre_like = '%' . strtolower(trim($genre_slug)) . '%';
+
+    $sql = "
+        SELECT * FROM {$wpdb->prefix}movies
+        WHERE LOWER(genre) LIKE %s
+    ";
+    $params = array($genre_like);
+
+    // Lägg till typ om den skickats med (ex "movie" eller "tv")
+    if (!empty($type)) {
+        // Om $type är en array (både 'movie' och 'tv')
+        if (is_array($type)) {
+            $placeholders = implode(',', array_fill(0, count($type), '%s'));
+            $sql .= " AND type IN ($placeholders)";
+            $params = array_merge($params, $type);
+        } else {
+            $sql .= " AND type = %s";
+            $params[] = $type;
+        }
+    }
+
+    // Sorteringsval
+    // Om random/RAND() efterfrågas
+    if ($orderby === 'random' || strtoupper($orderby) === 'RAND()') {
+        $sql .= " ORDER BY RAND()";
+    } else {
+        // Skydda mot SQL-injection i orderby med en whitelist!
+        $allowed_orderbys = ['release_date', 'title'];
+        $orderby_safe = in_array($orderby, $allowed_orderbys) ? $orderby : 'release_date';
+        $sql .= " ORDER BY {$orderby_safe} DESC";
+    }
+
+    // Limit
+    $sql .= " LIMIT %d";
+    $params[] = $limit;
+
+    $query = $wpdb->prepare($sql, $params);
+
+    error_log("WP-Movies Query: " . $query);
+
+    $results = $wpdb->get_results($query);
+    error_log("WP-Movies Results: " . print_r($results, true));
+
+    return $results;
+}
 
 // Stöd för Font Awesome ikoner
 function wp_movies_enqueue_styles() {
