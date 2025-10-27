@@ -1,7 +1,7 @@
 # 🎬 WP Movies
 
-## 🧰 Tech Stack / Tools I Use
-<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,figma,mysql" width="40" />
+## 🛠 Tech Stack / Tools I Use
+<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,figma,mysql" width="60" />
 
 ---
 
