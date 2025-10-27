@@ -659,7 +659,6 @@ textarea {
 }
 
 .main-navigation ul {
-	display: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
@@ -1123,7 +1122,7 @@ textarea {
 .sidebar-menu {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 0.5rem;
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -1357,13 +1356,6 @@ textarea {
     margin-left: 0.5rem; /* avstånd mellan text och ikon */
 }
 
-/* .fa-solid {
-  display: inline-block;
-  visibility: visible;
-  color: inherit;
-  font-size: 1em;
-} */
-
 /* Stil för Media & Text-blocket på About-sidan */
 .about-media-block {
   display: flex;
@@ -1406,6 +1398,41 @@ h1.entry-title {
 	margin: 3rem 0 0;
 }
 
+/* Dölj checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Hamburgerikon */
+.hamburger {
+    display: none;  /* syns bara på mobil */
+    font-size: 2rem;
+    cursor: pointer;
+    color: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.mobile-genres {
+	margin-block: 1.5rem 1rem;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	a {
+		color: #aaa;
+		text-decoration: none;
+		font-size: 0.9375rem;
+		transition: color 0.2s;
+	}
+
+	a:hover {
+		color: #ff6600;
+	}
+}
+
 /* Anpassa för mindre skärmar */
 @media (max-width: 1200px) {
     .tmdb-grid {
@@ -1422,5 +1449,103 @@ h1.entry-title {
 @media (max-width: 600px) {
     .tmdb-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+  .site {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "main"
+      "footer"
+      "sidebar"; /* sidebar längst ner */
+  }
+
+  .site-sidebar {
+	  width: 100%;
+	  border-right: none;
+	  border-top: 1px solid #292423;
+	  padding: 1rem;
+	  display: none; /* Dölj sidebar på små skärmar */
+  }
+    
+    /* Justera grid-layout för mobil */
+    .site {
+        grid-template-columns: 1fr; /* endast content */
+        grid-template-rows: auto 1fr auto; /* header, main, footer */
+        grid-template-areas: 
+            "header"
+            "main"
+            "footer";
+    }
+
+  .site-branding {
+    padding-block: 1rem;
+  }
+
+  .btn-primary {
+	display: none;
+  }
+
+  .main-navigation {
+    display: block;   /* Viktigt: säkerställ att blocket syns */
+	width: 100%;
+  }
+	
+	.about-media-block {
+	  flex-direction: column;
+	  gap: 1.5rem;
+	}
+	
+	.about-media-block .wp-block-media-text__content,
+	.about-media-block .wp-block-media-text__media {
+	  flex-basis: 100%;
+	  order: initial;
+	}
+
+	/* Visa hamburger på små skärmar */
+	.hamburger {
+        display: block;
+    }
+
+    .main-navigation {
+        display: none; /* dölj menyn tills checkbox är markerad */
+    }
+
+    #menu-toggle:checked + .hamburger + .main-navigation {
+        display: block;
+        background-color: #0E0B0A;
+    }
+    
+	.site-branding:has(#menu-toggle:checked) {
+        display: grid;
+		grid-template-columns: 1fr auto;
+    }
+
+	.sidebar-menu {
+		flex-direction: column;
+		gap: 0;
+	}
+
+    .sidebar-menu li a {
+        padding: 0.75rem 0;
+        font-size: 1rem;
+    }
+
+	.sidebar-menu li a:hover {
+		color: #ff6600;
+		background-color: transparent;
+		border-color: transparent;
+	}
+}
+
+@media (min-width: 769px) {
+    .site-header .main-navigation {
+		display: none;
+	}
+
+	.mobile-genres {
+        display: none; /* visas endast på mobil */
     }
 }
