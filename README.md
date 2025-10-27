@@ -1,6 +1,8 @@
 # 🎬 WP Movies
 
-<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,photoshop,canva" />
+## 🧰 Tech Stack / Tools I Use
+<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,figma,mysql" width="30" />
+---
 
 ## 🚀 The Project
 This project is the final task of my 100-day Frontend Developer education at Lexicon. The goal was to make a custom WordPress theme based on the Underscores starter theme. Besides, bring a Figma design to life as a working template for the website.  
@@ -10,6 +12,7 @@ The site dynamically displays info about movies and TV shows using data fetched 
 You will also find a section for films and TV shows, organized by genre.
 
 🔗 **Live site:** [https://anderswebb.se](https://anderswebb.se)
+---
 
 ## ✨ Features
 ✅ Change the header page according to the Figma design  
