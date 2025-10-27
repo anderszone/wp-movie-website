@@ -59,12 +59,12 @@ You will also find a section for films and TV shows, organized by genre.
 
 ## 🧭 Future development
 * Add a contact form and ensure proper form handling and validation.
+* Enhance the search function and create a search results page.
 * Create a user rating and review system for movies and TV shows.
 * Allow users to save watchlists for movies and TV shows.
-* Implement secure user authentication and authorization.
-* Add role-based access control for admin and user roles.
-* Include aria-attributes, color contrast, and font size to improve accessibility (WCAG).
 * Optimize for SEO by adding meta tags, schema markup, and Open Graph data.
-* Refactor the codebase to ensure more consistent styling and structure across components.
+* Implement secure user authentication and authorization.
+* Include aria-attributes, color contrast, and font size to improve accessibility (WCAG).
 * Enhance caching with a plugin like WP Rocket or custom transient API caching for TMDB requests.
+* Refactor the codebase to ensure more consistent styling and structure.
 * Add unit and integration tests to improve reliability and maintainability.
