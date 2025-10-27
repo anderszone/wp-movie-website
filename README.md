@@ -1,7 +1,18 @@
 # 🎬 WP Movies
 
 ## 🛠 Tech Stack / Tools I Use
-<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,figma,mysql" width="60" />
+<p>
+  <img src="https://skillicons.dev/icons?i=wordpress" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=php" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=html" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=css" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=js" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=git" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=github" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=vscode" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=figma" width="60" style="margin:5px;" />
+  <img src="https://skillicons.dev/icons?i=mysql" width="60" style="margin:5px;" />
+</p>
 
 ---
 
