@@ -40,7 +40,7 @@ You will also find a section for films and TV shows, organized by genre.
 
 ---
 
-📚 Lessons Learned
+## 📚 Lessons Learned
 * WordPress theme structure
 * API integration with TMDB API
 * Store data via the TMDB API to the local MySQL database
