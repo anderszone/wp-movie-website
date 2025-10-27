@@ -38,3 +38,5 @@ You will also find a section for films and TV shows, organized by genre.
 ✅ Add a new TV page with sixteen randomized TV shows  
 ✅ Make a new taxonomy for various genres  
 
+## ✍️ Contact
+👤 Anders 🔗anderszone
