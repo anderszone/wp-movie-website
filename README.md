@@ -1,7 +1,8 @@
 # 🎬 WP Movies
 
 ## 🧰 Tech Stack / Tools I Use
-<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,figma,mysql" width="30" />
+<img src="https://skillicons.dev/icons?i=wordpress,php,html,css,js,git,github,vscode,figma,mysql" width="40" />
+
 ---
 
 ## 🚀 The Project
@@ -12,6 +13,7 @@ The site dynamically displays info about movies and TV shows using data fetched 
 You will also find a section for films and TV shows, organized by genre.
 
 🔗 **Live site:** [https://anderswebb.se](https://anderswebb.se)
+
 ---
 
 ## ✨ Features
