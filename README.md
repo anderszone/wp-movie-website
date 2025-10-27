@@ -38,5 +38,19 @@ You will also find a section for films and TV shows, organized by genre.
 ✅ Add a new TV page with sixteen randomized TV shows  
 ✅ Make a new taxonomy for various genres  
 
+---
+
+📚 Lessons Learned
+WordPress theme structure
+API integration with TMDB API
+Store data via the TMDB API to the local MySQL database
+Show TMDB data from the local database on the frontend
+Create my WordPress plugin to handle and show movies & TV series
+Responsiveness
+HostUp web hosting and cPanel
+GitHub Projects
+
+---
+
 ## ✍️ Contact
 👤 Anders 🔗anderszone
