@@ -52,11 +52,6 @@ You will also find a section for films and TV shows, organized by genre.
 
 ---
 
-## ✍️ Contact
-👤 Anders 🔗anderszone
-
----
-
 ## 🧭 Future development
 * Add a contact form and ensure proper form handling and validation.
 * Enhance the search function and create a search results page.
@@ -68,3 +63,6 @@ You will also find a section for films and TV shows, organized by genre.
 * Enhance caching with a plugin like WP Rocket or custom transient API caching for TMDB requests.
 * Refactor the codebase to ensure more consistent styling and structure.
 * Add unit and integration tests to improve reliability and maintainability.
+
+## ✍️ Contact
+👤 Anders 🔗anderszone
