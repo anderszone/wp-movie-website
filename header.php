@@ -68,6 +68,46 @@
 				?>
 				<p class="site-description"><?php echo $underscores_starter_template_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>
+			<!-- HÄR LÄGGER VI IN HAMBURGER-MENYN -->
+			<input type="checkbox" id="menu-toggle" />
+			<label for="menu-toggle" class="hamburger">&#9776;</label>
+			<nav class="main-navigation">
+				<ul class="sidebar-menu">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/movies">Movies</a></li>
+					<li><a href="/tv">TV Shows</a></li>
+				</ul>
+	
+				<!-- Genres för mobil -->
+				<div class="mobile-genres">
+					<h3 class="genres-title"><?php esc_html_e( 'Genres', 'wp-movie-website' ); ?></h3>
+					<ul>
+						<?php
+						$genres = get_terms( array(
+							'taxonomy'   => 'genre',
+							'orderby'    => 'name',
+							'order'      => 'ASC',
+							'hide_empty' => false,
+						) );
+
+						if ( ! empty( $genres ) && ! is_wp_error( $genres ) ) :
+							foreach ( $genres as $genre ) :
+						?>
+								<li>
+									<a href="<?php echo esc_url( get_term_link( $genre ) ); ?>">
+										<?php echo esc_html( $genre->name ); ?>
+									</a>
+								</li>
+						<?php
+							endforeach;
+						endif;
+						?>
+					</ul>
+				</div>
+			</nav>
 		</div><!-- .site-branding -->
+
+
 		<hr class="divider">
 	</header><!-- #masthead -->
