@@ -54,3 +54,17 @@ You will also find a section for films and TV shows, organized by genre.
 
 ## ✍️ Contact
 👤 Anders 🔗anderszone
+
+---
+
+## 🧭 Future development
+* Add a contact form and ensure proper form handling and validation.
+* Create a system for users to rate and review movies and TV shows.
+* Make it possible for users to save movies and TV series to a watchlist.
+* Implement secure user authentication and authorization.
+* Add role-based access control for admin and user roles.
+* Improve accessibility (WCAG) by adding aria-attributes, color contrast, and font sizes.
+* Optimize for SEO by adding meta tags, schema markup, and Open Graph data.
+* Refactor the codebase to ensure more consistent styling and structure across components.
+* Enhance caching with a plugin like WP Rocket or custom transient API caching for TMDB requests.
+* Add unit and integration tests to improve reliability and maintainability.
