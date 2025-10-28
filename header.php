@@ -18,6 +18,20 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+	<?php
+	// Dynamisk meta description
+	if ( is_front_page() ) {
+		$meta_description = "Discover the latest movies and TV shows across Action, Comedy, Drama, Fantasy, and more. Explore trailers, posters, and reviews all in one place.";
+	} elseif ( is_singular() ) {
+		$meta_description = get_the_excerpt();
+	} elseif ( is_archive() ) {
+		$meta_description = "Browse archives for movies, TV shows and genres on AndersWebb.se.";
+	} else {
+		$meta_description = get_bloginfo('description');
+	}
+	?>
+	<meta name="description" content="<?php echo esc_attr( $meta_description ); ?>">
+
 	<?php wp_head(); ?>
 </head>
 

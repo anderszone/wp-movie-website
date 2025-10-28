@@ -46,7 +46,8 @@ get_header();
 					foreach ( $movies as $movie ) {
 						echo '<div class="tmdb-item">';
 						echo '<a href="https://www.themoviedb.org/movie/' . esc_attr( $movie->tmdb_id ) . '" target="_blank">';
-						echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="' . esc_attr( $movie->title ) . '">';
+						// echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="' . esc_attr( $movie->title ) . '">';
+						echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="Movie poster for ' . esc_attr( $movie->title ) . ', released in ' . esc_attr( date('Y', strtotime($movie->release_date)) ) . '">';
 						echo '<h3>' . esc_html( $movie->title ) . '</h3>';
 						echo '</a></div>';
 					}
@@ -68,7 +69,8 @@ get_header();
 					foreach ( $tvshows as $tv ) {
 						echo '<div class="tmdb-item">';
 						echo '<a href="https://www.themoviedb.org/tv/' . esc_attr( $tv->tmdb_id ) . '" target="_blank">';
-						echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $tv->poster ) . '" alt="' . esc_attr( $tv->title ) . '">';
+						// echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $tv->poster ) . '" alt="' . esc_attr( $tv->title ) . '">';'
+						echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $tv->poster ) . '" alt="TV show poster for ' . esc_attr( $tv->title ) . ', released in ' . esc_attr( date('Y', strtotime($tv->release_date)) ) . '">';
 						echo '<h3>' . esc_html( $tv->title ) . '</h3>';
 						echo '</a></div>';
 					}
@@ -94,7 +96,8 @@ get_header();
 						foreach ( $movies as $movie ) {
 							echo '<div class="tmdb-item">';
 							echo '<a href="https://www.themoviedb.org/movie/' . esc_attr( $movie->tmdb_id ) . '" target="_blank">';
-							echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="' . esc_attr( $movie->title ) . '">';
+							// echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="' . esc_attr( $movie->title ) . '">';
+							echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $movie->poster ) . '" alt="Movie poster for ' . esc_attr( $movie->title ) . ', released in ' . esc_attr( date('Y', strtotime($movie->release_date)) ) . '">';
 							echo '<h3>' . esc_html( $movie->title ) . '</h3>';
 							echo '<h3>' . esc_html( date('Y', strtotime($movie->release_date)) ) . '</h3>';
 							echo '</a></div>';
@@ -122,7 +125,8 @@ get_header();
 						foreach ( $tvshows as $tv ) {
 							echo '<div class="tmdb-item">';
 							echo '<a href="https://www.themoviedb.org/tv/' . esc_attr( $tv->tmdb_id ) . '" target="_blank">';
-							echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $tv->poster ) . '" alt="' . esc_attr( $tv->title ) . '">';
+							// echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $tv->poster ) . '" alt="' . esc_attr( $tv->title ) . '">';
+							echo '<img src="https://image.tmdb.org/t/p/w500' . esc_attr( $tv->poster ) . '" alt="TV show poster for ' . esc_attr( $tv->title ) . ', released in ' . esc_attr( date('Y', strtotime($tv->release_date)) ) . '">';
 							echo '<h3>' . esc_html( $tv->title ) . '</h3>';
 							echo '<h3>' . esc_html( date('Y', strtotime($tv->release_date)) ) . '</h3>';
 							echo '</a></div>';
