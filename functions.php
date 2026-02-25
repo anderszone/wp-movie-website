@@ -309,3 +309,45 @@ function wp_movie_menu_data_attributes( $atts, $item, $args, $depth ) {
     return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'wp_movie_menu_data_attributes', 10, 4 );
+
+/**
+ * Handle contact form submission
+ */
+add_action( 'admin_post_nopriv_wp_movie_contact', 'wp_movie_handle_contact' );
+add_action( 'admin_post_wp_movie_contact', 'wp_movie_handle_contact' );
+
+function wp_movie_handle_contact() {
+
+    // Verify nonce
+    if (
+        ! isset( $_POST['wp_movie_nonce'] ) ||
+        ! wp_verify_nonce( $_POST['wp_movie_nonce'], 'wp_movie_contact_action' )
+    ) {
+        wp_die( 'Security check failed.' );
+    }
+
+    // Sanitize input
+    $name    = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
+    $email   = isset( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
+    $message = isset( $_POST['message'] ) ? sanitize_textarea_field( $_POST['message'] ) : '';
+
+    // Validate input
+    if ( empty( $name ) || empty( $email ) || empty( $message ) || ! is_email( $email ) ) {
+        wp_redirect( add_query_arg( 'contact', 'error', wp_get_referer() ) );
+        exit;
+    }
+
+    // Prepare email
+    $admin_email = get_option( 'admin_email' );
+    $subject     = 'New message from WP Movies';
+    $body        = "Name: {$name}\n";
+    $body       .= "Email: {$email}\n\n";
+    $body       .= "Message:\n{$message}";
+
+    // Send email
+    wp_mail( $admin_email, $subject, $body );
+
+    // Redirect with success
+    wp_redirect( add_query_arg( 'contact', 'success', wp_get_referer() ) );
+    exit;
+}

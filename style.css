@@ -1549,3 +1549,29 @@ h1.entry-title {
         display: none; /* visas endast på mobil */
     }
 }
+
+.contact-section input,
+.contact-section textarea {
+    width: 100%;
+    max-width: 500px;
+}
+
+.contact-section p {
+    margin-bottom: 1rem;
+}
+
+.contact-success {
+    background: #1e4620;
+    color: #b4f5b4;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #4caf50;
+}
+
+.contact-error {
+    background: #4a1e1e;
+    color: #ffb3b3;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff5252;
+}
