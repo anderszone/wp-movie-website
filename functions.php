@@ -337,15 +337,29 @@ function wp_movie_handle_contact() {
         exit;
     }
 
-    // Prepare email
-    $admin_email = get_option( 'admin_email' );
-    $subject     = 'New message from WP Movies';
-    $body        = "Name: {$name}\n";
-    $body       .= "Email: {$email}\n\n";
-    $body       .= "Message:\n{$message}";
+    // Specific contact email
+    $custom_contact_email = 'info@anderswebb.se';
+
+    // Fallback to admin email if custom email is empty
+    $to = ! empty( $custom_contact_email )
+        ? sanitize_email( $custom_contact_email )
+        : get_option( 'admin_email' );
+
+    $subject = 'New message from WP Movies';
+
+    $body  = "Name: {$name}\n";
+    $body .= "Email: {$email}\n\n";
+    $body .= "Message:\n{$message}";
+
+    // Email headers
+    $headers = array(
+		'Content-Type: text/plain; charset=UTF-8',
+		'From: Anders Webb <info@anderswebb.se>',
+		'Reply-To: ' . $email,
+	);
 
     // Send email
-    wp_mail( $admin_email, $subject, $body );
+    wp_mail( $to, $subject, $body, $headers );
 
     // Redirect with success
     wp_redirect( add_query_arg( 'contact', 'success', wp_get_referer() ) );
