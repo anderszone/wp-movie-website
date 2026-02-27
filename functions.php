@@ -310,18 +310,9 @@ function wp_movie_menu_data_attributes( $atts, $item, $args, $depth ) {
 }
 add_filter( 'nav_menu_link_attributes', 'wp_movie_menu_data_attributes', 10, 4 );
 
-// Store form values in session for repopulation after redirect
-if ( session_status() === PHP_SESSION_ACTIVE ) {
-    $_SESSION['contact_form'] = array(
-        'name'    => $name,
-        'email'   => $email,
-        'message' => $message,
-    );
-}
-
 // Start session if not already started
 add_action( 'init', function() {
-    if ( ! session_id() ) {
+    if ( session_status() === PHP_SESSION_NONE ) {
         session_start();
     }
 });
@@ -353,11 +344,13 @@ function wp_movie_handle_contact() {
 	if ( empty( $name ) || empty( $email ) || empty( $message ) || ! is_email( $email ) ) {
 
 		// Store values in session
+		if ( session_status() === PHP_SESSION_ACTIVE ) {
 		$_SESSION['contact_form'] = array(
 			'name'    => $name,
 			'email'   => $email,
 			'message' => $message,
 		);
+	}
 
 		$redirect_url = add_query_arg(
 			array(
@@ -385,10 +378,25 @@ function wp_movie_handle_contact() {
         'Reply-To: ' . $email,
     );
 
-    wp_mail( $to, $subject, $body, $headers );
+    $mail_sent = wp_mail( $to, $subject, $body, $headers );
+
+	if ( ! $mail_sent ) {
+
+		$redirect_url = add_query_arg(
+			array(
+				'form_status' => 'error',
+			),
+			$contact_url
+		);
+
+		wp_safe_redirect( $redirect_url );
+		exit;
+	}
 
 	// Clear stored form data after successful submission
-	unset( $_SESSION['contact_form'] );
+	if ( session_status() === PHP_SESSION_ACTIVE ) {
+		unset( $_SESSION['contact_form'] );
+	}
 
     // Redirect with success
     $redirect_url = add_query_arg(

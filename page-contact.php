@@ -18,11 +18,11 @@ get_header();
 
             <?php
             if ( isset( $_GET['form_status'] ) && $_GET['form_status'] === 'success' ) {
-                echo '<p class="contact-success">Message sent successfully!</p>';
+                echo '<p class="contact-success" role="status">Message sent successfully!</p>';
             }
 
             if ( isset( $_GET['form_status'] ) && $_GET['form_status'] === 'error' ) {
-                echo '<p class="contact-error">Something went wrong. Please try again.</p>';
+                echo '<p class="contact-error" role="alert">Something went wrong. Please try again.</p>';
             }
             ?>
 
@@ -62,7 +62,6 @@ get_header();
 
                 <p>
                     <button type="submit" class="btn-primary">Send</button>
-                    <!-- <button type="submit">Send</button> -->
                 </p>
 
             </form>

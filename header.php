@@ -75,7 +75,6 @@
 					</a>
 				</h1>
 			<?php endif; ?>
-			<!-- <button class="btn-primary">Contact Us</button> -->
 			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-primary">Contact Us</a>
 
 			<?php
