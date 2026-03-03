@@ -285,11 +285,7 @@ function wp_movies_get_by_genre_smart($genre_slug, $type = '', $limit = 50, $ord
     $params[] = $limit;
 
     $query = $wpdb->prepare($sql, $params);
-
-    error_log("WP-Movies Query: " . $query);
-
     $results = $wpdb->get_results($query);
-    error_log("WP-Movies Results: " . print_r($results, true));
 
     return $results;
 }
