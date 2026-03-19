@@ -4,34 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Add data-icon attribute to menu links based on menu item title
- *
- * @param array  $atts  HTML attributes for the menu item.
- * @param object $item  WP_Post object for the menu item.
- * @param object $args  An object of wp_nav_menu() arguments.
- * @param int    $depth Depth of menu item.
- * @return array Modified HTML attributes with data-icon.
- */
-function wp_movie_menu_data_attributes( $atts, $item, $args, $depth ) {
-    $target_menus = array( 'menu-1' ); // Add more menu locations here if needed
-
-    if ( ! empty( $args->theme_location ) && in_array( $args->theme_location, $target_menus, true ) ) {
-        if ( ! empty( $item->title ) && is_string( $item->title ) ) {
-            $title = trim( $item->title );
-
-            // Replace spaces with dash, remove unwanted characters
-            $data_icon = strtolower( preg_replace( '/[^a-z0-9\-]/', '', str_replace( ' ', '-', $title ) ) );
-
-            $atts['data-icon'] = esc_attr( $data_icon );
-        }
-    }
-
-    return $atts;
-}
-add_filter( 'nav_menu_link_attributes', 'wp_movie_menu_data_attributes', 10, 4 );
-
-
-/**
  * Enqueue contact form validation script
  *
  * @return void

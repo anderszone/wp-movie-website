@@ -1169,21 +1169,6 @@ textarea {
 	border-left: 1px solid #FF4800;
 }
 
-/* Ikoner via data-attribut */
-[data-icon]::before {
-	font-family: "Font Awesome 5 Free"; 
-	font-weight: 900;
-	content: "";
-	display: inline-block;
-	margin-right: 10px;
-	text-align: center;
-}
-
-[data-icon="home"]::before { content: "\f015"; }    /* Home */
-[data-icon="about-us"]::before { content: "\f05a"; }   /* About Us */
-[data-icon="movies"]::before { content: "\f008"; }  /* Movies */
-[data-icon="tv"]::before { content: "\f26c"; }      /* TV Shows */
-
 /* Markera aktiv sida i sidomenyn */
 .sidebar-menu .current-menu-item > a {
 	color: #FAF9F7; /* samma färg som hover */
