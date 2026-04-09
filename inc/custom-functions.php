@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return void
  */
-function wp_movie_enqueue_contact_validation() {
+/* function wp_movie_enqueue_contact_validation() {
     $pages_to_enqueue = array( 'page-contact.php' ); // Add more page templates if needed
 
     foreach ( $pages_to_enqueue as $template ) {
@@ -23,4 +23,4 @@ function wp_movie_enqueue_contact_validation() {
         }
     }
 }
-add_action( 'wp_enqueue_scripts', 'wp_movie_enqueue_contact_validation' );
+add_action( 'wp_enqueue_scripts', 'wp_movie_enqueue_contact_validation' ); */
