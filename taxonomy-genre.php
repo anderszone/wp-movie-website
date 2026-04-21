@@ -12,8 +12,13 @@ $genre_slug = $genre_obj->slug;
 $genre_name = $genre_obj->name;
 
 // Hämta filmer och tv-serier baserat på genre
-$movies = wp_movies_get_by_genre_smart( $genre_slug, 'movie');
-$tv_shows = wp_movies_get_by_genre_smart( $genre_slug, 'tv');
+$movies = function_exists('wp_movies_get_by_genre_smart')
+    ? wp_movies_get_by_genre_smart( $genre_slug, 'movie')
+    : [];
+
+$tv_shows = function_exists('wp_movies_get_by_genre_smart')
+    ? wp_movies_get_by_genre_smart( $genre_slug, 'tv')
+    : [];
 ?>
 
 <main id="primary" class="site-main">
